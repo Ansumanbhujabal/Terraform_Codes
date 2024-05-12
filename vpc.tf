@@ -151,3 +151,13 @@ resource "aws_security_group" "test-web-sg" {
     Name = "test-web-sg"
   }
 }
+
+# SSH TRAFFIC 
+resource "aws_vpc_security_group_ingress_rule" "test-web-ssh" {
+  security_group_id = aws_security_group.test-web-sg.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 22
+  ip_protocol = "tcp"
+  to_port     = 22
+}
