@@ -161,3 +161,12 @@ resource "aws_vpc_security_group_ingress_rule" "test-web-ssh" {
   ip_protocol = "tcp"
   to_port     = 22
 }
+# HTTP TRAFFIC 
+resource "aws_vpc_security_group_ingress_rule" "test-web-http" {
+  security_group_id = aws_security_group.test-web-sg.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 80
+  ip_protocol = "tcp"
+  to_port     = 80
+}
