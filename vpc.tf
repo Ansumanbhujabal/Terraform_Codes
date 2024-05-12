@@ -29,3 +29,11 @@ resource "aws_subnet" "test-database" {
     Name = "test-database-subnet"
   }
 }
+# INTERNET GATEWAY
+resource "aws_internet_gateway" "web-igw" {
+  vpc_id = aws_vpc.test.id
+
+  tags = {
+    Name = "main"
+  }
+}
