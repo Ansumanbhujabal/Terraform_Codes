@@ -51,3 +51,9 @@ resource "aws_route_table" "web-rt" {
     Name = "main"
   }
 }
+# PUBLIC ROUTE TABLE ASSOCIATION
+resource "aws_route_table_association" "web-rt-association" {
+  subnet_id      = aws_subnet.test.id
+  route_table_id = aws_route_table.web-rt.id
+}
+
