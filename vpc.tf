@@ -98,3 +98,10 @@ resource "aws_network_acl" "test-web-nacl" {
     Name = "test-web-nacl"
   }
 }
+
+
+# PUBLIC NACL ASSOCIATION
+resource "aws_network_acl_association" "web-nacl-association" {
+  network_acl_id = aws_network_acl.test-web-nacl.id
+  subnet_id      = aws_subnet.test-web.id
+}
