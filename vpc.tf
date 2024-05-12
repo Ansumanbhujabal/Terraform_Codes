@@ -33,6 +33,20 @@ resource "aws_subnet" "test-database" {
 resource "aws_internet_gateway" "web-igw" {
   vpc_id = aws_vpc.test.id
 
+# PUBLIC ROUTE TABLE
+resource "aws_route_table" "web-rt" {
+  vpc_id = aws_vpc.test.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.web-igw.id
+  }
+
+
+  tags = {
+    Name = "web-routing-table"
+  }
+}
   tags = {
     Name = "main"
   }
