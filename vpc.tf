@@ -57,3 +57,12 @@ resource "aws_route_table_association" "web-rt-association" {
   route_table_id = aws_route_table.web-rt.id
 }
 
+# PRIVATE ROUTE TABLE
+resource "aws_route_table" "db-rt" {
+  vpc_id = aws_vpc.test.id
+
+
+  tags = {
+    Name = "db-routing-table"
+  }
+}
