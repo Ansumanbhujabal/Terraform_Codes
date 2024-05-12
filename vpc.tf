@@ -134,3 +134,8 @@ resource "aws_network_acl" "test-db-nacl" {
     Name = "test-db-nacl"
   }
 }
+# PRIVATE NACL ASSOCIATION
+resource "aws_network_acl_association" "db-nacl-association" {
+  network_acl_id = aws_network_acl.test-db-nacl.id
+  subnet_id      = aws_subnet.test-database.id
+}
