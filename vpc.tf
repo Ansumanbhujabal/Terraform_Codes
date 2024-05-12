@@ -139,3 +139,15 @@ resource "aws_network_acl_association" "db-nacl-association" {
   network_acl_id = aws_network_acl.test-db-nacl.id
   subnet_id      = aws_subnet.test-database.id
 }
+
+# PUBLIC SECUIRTY GROUP
+
+resource "aws_security_group" "test-web-sg" {
+  name        = "test-web-sg"
+  description = "Allows web traffic"
+  vpc_id      = aws_vpc.test.id
+
+  tags = {
+    Name = "test-web-sg"
+  }
+}
