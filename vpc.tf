@@ -105,3 +105,32 @@ resource "aws_network_acl_association" "web-nacl-association" {
   network_acl_id = aws_network_acl.test-web-nacl.id
   subnet_id      = aws_subnet.test-web.id
 }
+
+
+
+# PRIVATE NACL
+resource "aws_network_acl" "test-db-nacl" {
+  vpc_id = aws_vpc.test.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 200
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "test-db-nacl"
+  }
+}
